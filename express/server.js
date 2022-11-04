@@ -137,7 +137,7 @@ router.get("/", (req, res) => {
 });
 
 // Получение животных
-app.get("/animals", (req, res) => {
+router.get("/animals", (req, res) => {
   console.log("smb is knoking /animals");
   let answer = [...animals];
 
@@ -173,7 +173,7 @@ app.get("/animals", (req, res) => {
 });
 
 // Получение животного
-app.get("/animals/:id", (req, res) => {
+router.get("/animals/:id", (req, res) => {
   const animalId = req.params.id;
   console.log("smb is knoking /animals/:id");
 
@@ -186,7 +186,7 @@ app.get("/animals/:id", (req, res) => {
 });
 
 // Добавление животного
-app.post("/animals", (req, res) => {
+router.post("/animals", (req, res) => {
   console.log("smb is posting to /animals");
   let newAnimal = req.body;
   console.log("req.body: ", req.body);
@@ -217,7 +217,7 @@ app.post("/animals", (req, res) => {
 });
 
 // Изменение животного
-app.put("/animals/:id", (req, res) => {
+router.put("/animals/:id", (req, res) => {
   console.log("smb is changing /animals");
   const newAnimals = animals.map((elem) => {
     if (elem.id === Number(req.params.id)) {
@@ -248,7 +248,7 @@ app.put("/animals/:id", (req, res) => {
 });
 
 // Удаление животного
-app.delete("/animals/:id", (req, res) => {
+router.delete("/animals/:id", (req, res) => {
   console.log("smb is deleting /animals/id");
   const newAnimals = animals.filter(
     (elem) => elem.id !== Number(req.params.id)
