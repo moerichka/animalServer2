@@ -189,7 +189,7 @@ router.get("/animals/:id", (req, res) => {
 router.post("/animals", (req, res) => {
   console.log("smb is posting to /animals");
   let newAnimal = req.body;
-  console.log("req.body: ", req.body);
+
   newAnimal.id = animals.length + 1;
   if (!req.body.picture) {
     newAnimal.picture =
@@ -204,10 +204,10 @@ router.post("/animals", (req, res) => {
     const end = limit * page + Number(limit);
 
     let answerObj = {
-      count: answer.length,
-      next: !!answer[end],
-      prev: !!answer[start - 1],
-      array: answer.slice(start, end),
+      count: animals.length,
+      next: !!animals[end],
+      prev: !!animals[start - 1],
+      array: animals.slice(start, end),
     };
     res.status(200).json(answerObj);
     return;
@@ -235,10 +235,10 @@ router.put("/animals/:id", (req, res) => {
     const end = limit * page + Number(limit);
 
     let answerObj = {
-      count: answer.length,
-      next: !!answer[end],
-      prev: !!answer[start - 1],
-      array: answer.slice(start, end),
+      count: animals.length,
+      next: !!animals[end],
+      prev: !!animals[start - 1],
+      array: animals.slice(start, end),
     };
     res.status(200).json(answerObj);
     return;
@@ -262,10 +262,10 @@ router.delete("/animals/:id", (req, res) => {
     const end = limit * page + Number(limit);
 
     let answerObj = {
-      count: answer.length,
-      next: !!answer[end],
-      prev: !!answer[start - 1],
-      array: answer.slice(start, end),
+      count: animals.length,
+      next: !!animals[end],
+      prev: !!animals[start - 1],
+      array: animals.slice(start, end),
     };
     res.status(200).json(answerObj);
     return;
