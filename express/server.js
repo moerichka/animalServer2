@@ -289,23 +289,29 @@ router.post("/login", (req, res) => {
 
   if (!login && !password) {
     res.status(400).json({ error: "Ах, ошибка, и там и там пусто, ужас" });
+    return;
   }
   if (!login) {
     res.status(400).json({ error: "Ах, ошибка, пустой логин, ну как так" });
+    return;
   }
   if (!password) {
     res.status(400).json({ error: "Ах, ошибка, пустой пароль, ну как так" });
+    return;
   }
 
   const thisUser = users.find((user) => user.login === login);
   if (thisUser) {
     if (thisUser.password === password) {
       res.status(200).json(thisUser);
+      return;
     } else {
       res.status(400).json({ error: "Неверный пароль" });
+      return;
     }
   }
   res.status(404).json({ error: "Пользователь не найден" });
+  return;
 });
 
 app.use(bodyParser.json());
