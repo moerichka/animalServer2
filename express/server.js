@@ -287,26 +287,25 @@ const users = [
 router.post("/login", (req, res) => {
   const { login, password } = req.body;
 
-  if(!login ?? !password){
-    res.status(400).json("Ах, ошибка, и там и там пусто, ужас")
+  if (!login && !password) {
+    res.status(400).json({ error: "Ах, ошибка, и там и там пусто, ужас" });
   }
-  if(!login){
-    res.status(400).json("Ах, ошибка, пустой логин, ну как так")
+  if (!login) {
+    res.status(400).json({ error: "Ах, ошибка, пустой логин, ну как так" });
   }
-  if(!password){
-    res.status(400).json("Ах, ошибка, пустой пароль, ну как так")
+  if (!password) {
+    res.status(400).json({ error: "Ах, ошибка, пустой пароль, ну как так" });
   }
 
   const thisUser = users.find((user) => user.login === login);
-  if(thisUser){
-    if(thisUser.password === password){
-      res.status(200).json(thisUser)
-    }
-    else{
-      res.status(400).json("Неверный пароль")
+  if (thisUser) {
+    if (thisUser.password === password) {
+      res.status(200).json(thisUser);
+    } else {
+      res.status(400).json({ error: "Неверный пароль" });
     }
   }
-  res.status(404).json("Пользователь не найден")
+  res.status(404).json({ error: "Пользователь не найден" });
 });
 
 app.use(bodyParser.json());
