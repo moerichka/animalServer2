@@ -274,6 +274,31 @@ router.delete("/animals/:id", (req, res) => {
   res.status(200).json(animals);
 });
 
+// ============================
+
+const users = [
+  {
+    id: 0,
+    login: "admin",
+    password: "qwerty",
+  },
+];
+
+router.post("/login", (req, res) => {
+  const { login, password } = req.body;
+
+  const thisUser = users.find((user) => user.login === login);
+  if(thisUser){
+    if(thisUser.password === password){
+      res.status(200).json(thisUser)
+    }
+    else{
+      res.status(400).json("Неверный пароль")
+    }
+  }
+  res.status(404).json("Пользователь не найден")
+});
+
 app.use(bodyParser.json());
 app.use("/.netlify/functions/server", router); // path must route to lambda
 app.use("/", (req, res) => res.sendFile(path.join(__dirname, "../index.html")));
