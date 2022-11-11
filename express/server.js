@@ -287,6 +287,16 @@ const users = [
 router.post("/login", (req, res) => {
   const { login, password } = req.body;
 
+  if(!login ?? !password){
+    res.status(400).json("Ах, ошибка, и там и там пусто, ужас")
+  }
+  if(!login){
+    res.status(400).json("Ах, ошибка, пустой логин, ну как так")
+  }
+  if(!password){
+    res.status(400).json("Ах, ошибка, пустой пароль, ну как так")
+  }
+
   const thisUser = users.find((user) => user.login === login);
   if(thisUser){
     if(thisUser.password === password){
