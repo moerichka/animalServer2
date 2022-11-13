@@ -318,7 +318,7 @@ router.post("/registration", (req, res) => {
   let newUser = req.body;
   newUser.id = users.length + 1;
 
-  if (users.some((user) => user.login === login)) {
+  if (users.some((user) => user.login === newUser.login)) {
     res.status(400).json({ error: "Ах, ошибка, такой логин уже занят" });
     return;
   }
