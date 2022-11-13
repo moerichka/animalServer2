@@ -314,6 +314,24 @@ router.post("/login", (req, res) => {
   return;
 });
 
+router.post("/registration", (req, res) => {
+  const newUser = req.body;
+  newUser.id = users.length + 1;
+
+  if (users.some((user) => user.login === login)) {
+    res.status(400).json({ error: "Ах, ошибка, такой логин уже занят" });
+    return;
+  }
+
+  users.push(newUser);
+  res.status(200).json({ answer: "Пользователь был успешно сохранен" });
+  return;
+});
+
+router.get("/users", (req, res) => {
+  res.status(200).json(users);
+});
+
 app.use(bodyParser.json());
 app.use("/.netlify/functions/server", router); // path must route to lambda
 app.use("/", (req, res) => res.sendFile(path.join(__dirname, "../index.html")));
