@@ -315,7 +315,7 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/registration", (req, res) => {
-  const newUser = req.body;
+  let newUser = req.body;
   newUser.id = users.length + 1;
 
   if (users.some((user) => user.login === login)) {
