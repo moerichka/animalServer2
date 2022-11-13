@@ -276,7 +276,7 @@ router.delete("/animals/:id", (req, res) => {
 
 // ============================
 
-const users = [
+let users = [
   {
     id: 0,
     login: "admin",
