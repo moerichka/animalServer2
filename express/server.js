@@ -325,7 +325,6 @@ router.post("/registration", (req, res) => {
 
   users.push(newUser);
   res.status(200).json({ answer: "Пользователь был успешно сохранен" });
-  return;
 });
 
 router.get("/users", (req, res) => {
