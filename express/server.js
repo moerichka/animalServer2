@@ -221,7 +221,9 @@ router.put("/animals/:id", (req, res) => {
   console.log("smb is changing /animals");
   const newAnimals = animals.map((elem) => {
     if (elem.id === Number(req.params.id)) {
-      return req.body;
+      const changedAnimal = req.body;
+      changedAnimal.id = elem.id
+      return changedAnimal;
     } else {
       return elem;
     }
